@@ -198,11 +198,11 @@ def make_lookup(mart_name, dataset, attributes, filters=None, values=None,
         a ListVector of StrVectors"""
         # Could use ListVector directly with the dict, but want to guarantee
         # positional order of filters and values
-        f = robjects.StrVector(d.keys())
+        f = robjects.StrVector(list(d.keys()))
         v = robjects.ListVector(
             rpy2.rlike.container.TaggedList(
                 d.values(),
-                tags=d.keys()
+                tags=list(d.keys())
             )
         )
         return f, v
